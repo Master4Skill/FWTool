@@ -1,28 +1,26 @@
 import numpy as np
 import csv
 
-# Datenextractfunktion aus CSV Input file
-
-import csv
-
-def extract_data(file_name):
-    data = []
-    year = None
-    with open(file_name, 'r', encoding='utf-8') as file:
-        csv_reader = csv.reader(file, delimiter=';')
-        next(csv_reader)  # skip first header
-        next(csv_reader)  # skip second header
-        for row in csv_reader:
-            if row[0] != '':
-                year = int(row[0])  # get year from row
-            id_cl = int(row[1])  # get id_cl from row
-            et_value = float(row[2])  # get et value from row
-            data.append([year, id_cl, et_value])
-    return data
 
 
 # Die Daten aus der ersten Tabelle
-data = extract_data('input_cluster.csv')
+
+data = [
+    [2019, 1, 332.384657],
+    [2019, 2, 5.192877],
+    [2019, 3, 0],
+    [2019, 4, 43.453898],
+    [2019, 5, 2422.722115],
+    [2019, 6, 1248.1333165],
+    [2019, 7, 0],
+    [2020, 1, 420.842087],
+    [2020, 2, 5.183286],
+    [2020, 3, 0],
+    [2020, 4, 43.375647],
+    [2020, 5, 2668.790623],
+    [2020, 6, 1322.420172],
+    [2020, 7, 0],
+]
 
 # Das Lastenprofil für den Fernwärmebedarf pro Monat
 lastenprofil = {
@@ -60,7 +58,7 @@ for i, row in enumerate(data):
             tabelle[i, j + 3] = round(bedarf, 2)
 
 # Speichere die Tabelle als CSV-Datei
-with open("ergebnis_tabelle2.csv", "w", newline="", encoding='utf-8') as csvfile:
+with open("ergebnis_tabelle3.csv", "w", newline="") as csvfile:
     writer = csv.writer(csvfile)
     writer.writerow(["Jahr", "Cluster", "Fernwärme"] + list(lastenprofil.keys()))
     writer.writerows(tabelle)
