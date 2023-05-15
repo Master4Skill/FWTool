@@ -13,6 +13,8 @@ def extract_data(file_name):
         next(csv_reader)  # skip first header
         next(csv_reader)  # skip second header
         for row in csv_reader:
+            if not row:  # if row is an empty list
+                continue  # skip to next iteration of loop
             if row[0] != '':
                 year = int(row[0])  # get year from row
             id_cl = int(row[1])  # get id_cl from row

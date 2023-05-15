@@ -4,7 +4,7 @@ import csv
 
 # Read the data from the CSV file
 data = []
-with open("ergebnis_tabelle.csv", "r") as csvfile:
+with open("ergebnis_tabelle2.csv", "r") as csvfile:
     reader = csv.reader(csvfile)
     next(reader)  # Skip the header row
     for row in reader:
